@@ -1,0 +1,18 @@
+<header>
+	<nav>
+		<ul>
+			<li><a href='/'>Inicio</a></li>
+			<li><a href='/usuarios'>Usuarios registrados</a></li>
+			<li><a href='/recetas'>Recetas</a></li>
+		</ul>
+	</nav>
+</header>
+<section>
+	<h1>Recetario ;)</h1>
+	<p>Actualmente tenemos registrados:</p>
+	<ul>
+	{% for dato in recetas %}
+	<li>{{dato.titulo}}</li>
+	{% endfor %}
+	</ul>
+</section>
