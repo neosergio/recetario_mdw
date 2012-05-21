@@ -1,9 +1,13 @@
+<style>
+	img { width:100px; }
+</style>
 <header>
 	<nav>
 		<ul>
 			<li><a href='/'>Inicio</a></li>
 			<li><a href='/usuarios'>Usuarios registrados</a></li>
 			<li><a href='/recetas'>Recetas</a></li>
+			<li><a href='/sobre'>Sobre</a></li>
 		</ul>
 	</nav>
 </header>
@@ -12,8 +16,8 @@
 <ul>
 	{% for dato in datos %}
 	<li>
-		<a href='/receta/{{dato.id}}'>{{dato.titulo}}</a> 
-		<img src='http://127.0.0.1:8000/media/{{dato.imagen}}'>
+		<a href='/receta/{{dato.id}}'>{{dato.titulo}}</a><br>
+		<img src='{{MEDIA_URL}}{{dato.imagen}}'>
 	</li>
 	{% endfor %}
 </ul>

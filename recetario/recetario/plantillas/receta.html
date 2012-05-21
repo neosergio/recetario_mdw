@@ -4,6 +4,7 @@
 			<li><a href='/'>Inicio</a></li>
 			<li><a href='/usuarios'>Usuarios registrados</a></li>
 			<li><a href='/recetas'>Recetas</a></li>
+			<li><a href='/sobre'>Sobre</a></li>
 		</ul>
 	</nav>
 </header>
@@ -18,7 +19,7 @@
 		<p>{{receta.preparacion}}</p>
 	</div>
 	<div id='referencia'>
-		<img src='http://127.0.0.1:8000/media/{{receta.imagen}}'>
+		<img src='{{MEDIA_URL}}{{receta.imagen}}'>
 	</div>
 	<div id='comentarios'>
 		<h2>Comentarios</h2>
