@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+  <meta charset='utf-8'>
+  <title>Recetario para MDW - {% block titulo %}{% endblock %}</title>
+  <style>
+  {% block style_css %}{% endblock %}
+  </style>
+</head>
+<body>
+  <header>
+	{% block encabezado %}{% endblock %}
+	<nav>
+	  <ul>
+		<li><a href='/'>Inicio</a></li>
+		<li><a href='/usuarios'>Usuarios registrados</a></li>
+		<li><a href='/recetas'>Recetas</a></li>
+		<li><a href='/sobre'>Sobre</a></li>
+      </ul>
+	</nav>
+	<hr>
+  </header>	
+  <section class='contenido'>
+	{% block contenido %}{% endblock %}
+  </section>
+  <footer>
+	<p>Proyecto de ejemplo para el curso Django de Maestros del Web &copy;2012</p>
+  </footer>
+</body>
+</html>

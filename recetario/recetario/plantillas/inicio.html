@@ -1,19 +1,30 @@
-<header>
-	<nav>
-		<ul>
-			<li><a href='/'>Inicio</a></li>
-			<li><a href='/usuarios'>Usuarios registrados</a></li>
-			<li><a href='/recetas'>Recetas</a></li>
-			<li><a href='/sobre'>Sobre</a></li>
-		</ul>
-	</nav>
-</header>
-<section>
-	<h1>Recetario ;)</h1>
-	<p>Actualmente tenemos registrados:</p>
-	<ul>
-	{% for dato in recetas %}
-	<li>{{dato.titulo}}</li>
-	{% endfor %}
+{% extends 'base.html' %}
+
+{% comment %} Aqui van comentarios {% endcomment %}
+
+{% block titulo %} Inicio {% endblock %}
+
+{% block style_css %}
+  .impar { background-color:#90EE90; }
+  .par { background-color:#5ACC5A; }
+{% endblock %}
+
+{% block encabezado %} 
+	<h1>Recetario ;) </h1>
+{% endblock %}
+
+{% block contenido %}
+  <p>
+	  Actualmente tenemos registradas: 
+     {% with total=recetas.count %} 
+		{{total}} receta{{total|pluralize}}
+	 {% endwith %}
+  </p>
+	<ul>		
+	  {% for dato in recetas %}
+	  <li class="{% cycle 'impar' 'par' %}">{{dato.titulo}}</li>
+	  {% empty %}
+	  <li>No hay recetas registradas aún.</li>
+	  {% endfor %}
 	</ul>
-</section>
+{% endblock %}
