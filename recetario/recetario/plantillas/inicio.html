@@ -22,7 +22,7 @@
   </p>
 	<ul>		
 	  {% for dato in recetas %}
-	  <li class="{% cycle 'impar' 'par' %}">{{dato.titulo}}</li>
+	  <li class="{% cycle 'impar' 'par' %}">{{dato.titulo|title}}</li>
 	  {% empty %}
 	  <li>No hay recetas registradas aún.</li>
 	  {% endfor %}
