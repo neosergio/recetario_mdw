@@ -18,4 +18,8 @@ urlpatterns = patterns('',
     url(r'^contacto/$','principal.views.contacto'),
     url(r'^receta/nueva/$','principal.views.nueva_receta'),
     url(r'^comenta/$','principal.views.nuevo_comentario'),
+    url(r'^usuario/nuevo$','principal.views.nuevo_usuario'),
+    url(r'^ingresar/$','principal.views.ingresar'),
+    url(r'^privado/$','principal.views.privado'),
+    url(r'^cerrar/$', 'principal.views.cerrar'),
 )
