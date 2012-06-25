@@ -5,6 +5,8 @@
 import os
 RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
 
+#Está linea se debe dejar en False cuando se pasa a producción
+#DEBUG = False, 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -14,10 +16,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+#En el nombre de la base de datos debe ir la ruta absoluta completa de la base de
+#datos, en el caso de Windows debe ir entre comillas
+#'NAME': '/ruta_del_directorio_del_proyecto/recetario/recetario.db',
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/home/sergio/code/recetario_mdw/recetario/recetario.db',                      # Or path to database file if using sqlite3.
+        'NAME': 'recetario.db',          # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -58,7 +63,9 @@ MEDIA_ROOT = os.path.join(RUTA_PROYECTO,'carga')
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = 'http://localhost:90/media/'
+# Configurar esta línea es importante puede quedar algo así:
+# MEDIA_URL = 'http://localhost:90/media/'
+MEDIA_URL = 'http://127.0.0.1:8000/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -68,6 +75,9 @@ STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
+# Esto debe configurarse de manera similar que el media para poder servir archivos estáticos
+# Puede ser algo como esta linea comentada
+# STATIC_URL = 'http://localhost:90/static/'
 STATIC_URL = '/static/'
 
 # Additional locations of static files

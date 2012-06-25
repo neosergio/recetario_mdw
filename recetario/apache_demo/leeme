@@ -4,5 +4,8 @@ Cosas que recordar para la puesta en producción
 - Configurar el servidor y el puerto de salida para los archivos estaticos, solo en windows las rutas deben ir entre comillas
 - La base de datos debe usar una ruta absoluta
 - La configuración de la URL de media debe ser acorde al servidor
+- La configuración de la URL de static debe ser acorde al servidor
 - Apagar el modo de depuración
 - No olvidar tener las plantillas para errores 404 y 500
+- Cambiar el dueño y grupo de la carpeta por el usuario del servidor
+- Copiar carpeta admin de django/contrib/admin/static/admin para los estilos
