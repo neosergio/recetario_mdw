@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block titulo %}Recetas registradas{% endblock %}
+
+{% block encabezado %}
+    <h1>Nuestras recetas</h1>
+{% endblock %}
+
+{% block contenido %}
+{% if is_authenticated %}
+    <a href="{% url "receta_create" %}">Agregar una receta</a>
+{% else %}
+    <a href="{% url "login" %}">Accede a tu cuenta para agregar recetas</a>
+{% endif %}
+<ul>
+{% for receta in recetas %}
+    <li>
+        <a href="{% url "receta_detail" receta.id %}">{{ receta.titulo }}</a><br />
+        <img class="img-100" src="{{ MEDIA_URL }}{{ receta.imagen }}" />
+    </li>
+{% empty %}
+    <li>Aún no hay recetas registradas.</li>
+{% endfor %}
+</ul>
+{% if is_paginated %}
+<div class="pagination">
+    <ul>
+        {% if page_obj.has_previous %}
+        <li><a href="{% url "receta_list" %}?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        {% for page in page_obj.paginator.page_range %}
+            {% if page_obj.number == page %}
+                <li class="active">[ {{ page }} ]</li>
+            {% else %}
+                <li><a href="{% url "receta_list" %}?page={{ page }}">{{ page }}</a></li>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <li><a href="{% url "receta_list" %}?page={{ page_obj.next_page_number }}">Next</a></li>
+        {% endif %}
+
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+    </ul>
+</div>
+{% endif %}
+
+{% endblock %}

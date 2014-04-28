@@ -1,0 +1,22 @@
+{
+"active": true,
+"author": {
+    "username": "mike.nieva",
+    "avatar": "https://graph.facebook.com/782730356/picture?type=large&return_ssl_resources=1"},
+    "content": "<span>Django viene con un archivo por defecto llamado: test.py en nuestra aplicaci\u00f3n, borraremos lo que trae y haremos nuestras pruebas aqu\u00ed, el archivo debe quedar de la siguiente forma:<br></span><br><pre class=\"prettyprint\">from django.test import TestCase<br>class SimpleTest(TestCase):<br>&nbsp; &nbsp; # nuestras pruebas</pre><span><br>Cada prueba ser\u00e1 una funci\u00f3n y siempre debemos empezar su nombre con test_ (es una buena pr\u00e1ctica) &nbsp;y luego el modelo a testear, adem\u00e1s debemos recibir como par\u00e1metro a s\u00ed mismos (self).<br><br>Ahora dentro de la funci\u00f3n colocaremos la l\u00f3gica de nuestra prueba unitaria teniendo en cuenta las caracter\u00edsticas descritas en la lectura \u00bfQue es Unit Testing?.<br><br>En esta funci\u00f3n simularemos crear el modelo con:<br><br></span><pre class=\"prettyprint\">__modelo__.objects.create(parametros)</pre><span><br>El cual el modelo sea el nombre del mismo a testear (recuerda importarlo antes de usarlo) y los parametros seran los campos requeridos para crear el modelo.<br><br>Podemos hacer confirmaciones con:<br><br></span><pre class=\"prettyprint\">self.assertEqual(__modelo__.parametro, 0)</pre><span><br>En donde decimos que nos asegure si en el par\u00e1metro del __modelo__ es igual a 0, si esto es cierto, la prueba est\u00e1 correcta.<br><br>Python y Django tiene varios de estos asserts para realizar este tipo de pruebas.<br><br>Pocas l\u00edneas y eficiencia, nos permite probar modelos para tener certeza de la ejecuci\u00f3n de nuestras aplicaciones.<br><br>Para ejecutar tu prueba colocamos el siguiente comando en terminal:<br><br></span><pre class=\"prettyprint\">$ python manage.py test app</pre><span><br>Siendo app la aplicaci\u00f3n que deseamos testear, si el resultado es OK, todo esta perfecto, de lo contrario, tenemos un error en el c\u00f3digo.<br></span>",
+    "date": "2013,09,23,16,21,00,UTC",
+    "description": "Todo por tener un fin de semana feliz",
+    "edit_url": "/course/backend-online/material/unit-testing-en-django/edit_material/"
+    "id": 1055,
+    "image": null,
+    "important": false,
+    "instruction": "",
+    "link": "",
+    "load_content_url": "/course/backend-online/material/unit-testing-en-django/single/",
+    "load_url": "/cursos/backend-online/material/unit-testing-en-django/",
+    "material_type": "lecture",
+    "name": "\u00bfC\u00f3mo usar Unit Testing en Django?",
+    "priority": "1",
+    "slug": "unit-testing-en-django",
+    "timestamp": "1379974860",
+}
