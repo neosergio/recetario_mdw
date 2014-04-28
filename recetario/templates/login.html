@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block titulo %}Login{% endblock %}
+
+{% block encabezado %}
+    <h1>Login</h1>
+{% endblock %}
+
+{% block contenido %}
+    {% if user.is_authenticated %}
+        Bienvenido {{ user.username|capfirst }} - <a href="{% url "logout" %}">Logout</a>
+    {% else %}
+    <form method="post">{% csrf_token %}
+        <div>
+        <input name="username" type="text" placeholder="username/email" />
+        </div>
+        <div>
+        <input name="password" type="password" placeholder="password" />
+        </div>
+        <div>
+        <input type="checkbox" /> Recordar
+        </div>
+        <input type="submit" value="Ingresar" />
+    </form>
+    {% endif %}
+{% endblock %}

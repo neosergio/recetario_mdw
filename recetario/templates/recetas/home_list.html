@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block encabezado %}
+    <h1>Recetario</h1>
+{% endblock %}
+
+{% block contenido %}
+    <p>
+        Actualmente tenemos registradas:
+        {% with total=recetas.count %}
+            {{ total }} receta{{ total|pluralize }}
+        {% endwith %}
+    </p>
+
+    <ul>
+    {% for receta in recetas %}
+        <li class="{% cycle 'impar' 'par' %}">{{ receta.titulo }}</li>
+    {% empty %}
+        <li>No hay recetas registradas, aún.</li>
+    {% endfor %}
+    </ul>
+{% endblock %}

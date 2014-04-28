@@ -1,0 +1,46 @@
+{% load static from staticfiles  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Recetario UP - {% block titulo %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}" />
+</head>
+<body>
+
+<header>
+    {% block encabezado %}{% endblock %}
+    <nav>
+        <ul>
+            <li><a href="{% url "home_list" %}">Inicio</a></li>
+            <li>
+                {% if user.is_authenticated %}
+                    Bienvenido, {{ user.username }}. <a href="{% url "logout" %}">Logout</a>
+                {% else %}
+                    <a href="{% url "login" %}">Login</a> / 
+                    <a href="{% url "registrar_usuario" %}">Registrarse</a>
+                {% endif %}
+            </li>
+            <li><a href="{% url "usuario_list" %}">Colaboradores</a></li>
+            <li><a href="{% url "receta_list" %}">Recetas</a></li>
+            <li><a href="{% url "comentario_create" %}">Comenta</a></li>
+            <li><a href="{% url "receta_about" %}">About</a></li>
+            <li><a href="{% url "contacto_form" %}">Contáctanos</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="contentido">
+{% block contenido %}{% endblock %}
+</section>
+
+<footer>
+<p>Proyecto recetario actualizado de versión y usando Class Base Views. 2013</p>
+</footer>
+
+
+<script type="text/javascript" src="{% static 'js/jquery.min.css' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.css' %}"></script>
+</body>
+</html>

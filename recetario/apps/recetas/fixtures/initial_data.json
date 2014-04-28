@@ -1,0 +1,146 @@
+[
+    {
+        "pk": 1,
+        "model": "auth.user",
+        "fields": {
+            "username": "admin",
+            "first_name": "Victor",
+            "last_name": "Villazon",
+            "is_active": true,
+            "is_superuser": true,
+            "is_staff": true,
+            "last_login": "2013-12-26T15:34:26.412Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$FJsi1WRvodF1$suz8WD13RnI2G2AfXNuf+/94zqwF3jkRB819fWEc91w=",
+            "email": "victorzn23@gmail.com",
+            "date_joined": "2013-12-25T07:16:45Z"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "auth.user",
+        "fields": {
+            "username": "sofia",
+            "first_name": "Sofia",
+            "last_name": "Villazon",
+            "is_active": true,
+            "is_superuser": false,
+            "is_staff": false,
+            "last_login": "2013-12-25T22:28:13Z",
+            "groups": [],
+            "user_permissions": [],
+            "password": "pbkdf2_sha256$10000$Y9PFDjJvN7D6$QWPkKiTdHbOBKzmGkFgzJv7Q1B8wJiUIauTAqGGET7E=",
+            "email": "sofia@gmail.com",
+            "date_joined": "2013-12-25T22:28:13Z"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "recetas.receta",
+        "fields": {
+            "titulo": "Huevo Frito",
+            "ingredientes": "Huevo y sal",
+            "preparacion": "Freir y servir.",
+            "imagen": "recetas/huevo_frito.jpg",
+            "tiempo_registro": "2013-12-26T10:35:00.974Z",
+            "usuario": 1
+        }
+    },
+    {
+        "pk": 2,
+        "model": "recetas.receta",
+        "fields": {
+            "titulo": "Limonada",
+            "ingredientes": "agua, limón y azúcar",
+            "preparacion": "Mezclar y servir",
+            "imagen": "recetas/limonada.jpg",
+            "tiempo_registro": "2013-12-26T10:35:00.974Z",
+            "usuario": 1
+        }
+    },
+    {
+        "pk": 3,
+        "model": "recetas.receta",
+        "fields": {
+            "titulo": "Agua Hervida",
+            "ingredientes": "Agua",
+            "preparacion": "Colocar el agua en un tacho y hervir.",
+            "imagen": "recetas/agua_hervida.jpg",
+            "tiempo_registro": "2013-12-26T10:35:00.974Z",
+            "usuario": 2
+        }
+    },
+    {
+        "pk": 4,
+        "model": "recetas.receta",
+        "fields": {
+            "titulo": "Jugo Naranja",
+            "ingredientes": "agua, naranjas , hielo y azúcar",
+            "preparacion": "Mezclar , hechar hielo y servir.",
+            "imagen": "recetas/jugo_naranja.png",
+            "tiempo_registro": "2013-12-26T10:35:00.974Z",
+            "usuario": 2
+        }
+    },
+    {
+        "pk": 5,
+        "model": "recetas.receta",
+        "fields": {
+            "titulo": "Yogurth con Frutas",
+            "ingredientes": "Yogurth, fresas, mazana, mango, pera, tuna, uvas, leche condenzada",
+            "preparacion": "Mezclar y servir.",
+            "imagen": "recetas/yogurt_con_frutas.jpg",
+            "tiempo_registro": "2013-12-26T10:35:00.974Z",
+            "usuario": 2
+        }
+    },
+    {
+        "pk": 1,
+        "model": "recetas.comentario",
+        "fields": {
+            "receta": 1,
+            "texto": "Comida de campeones"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "recetas.comentario",
+        "fields": {
+            "receta": 1,
+            "texto": "Qué rico!"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "recetas.comentario",
+        "fields": {
+            "receta": 1,
+            "texto": "Muy buena receta."
+        }
+    },
+    {
+        "pk": 4,
+        "model": "recetas.comentario",
+        "fields": {
+            "receta": 2,
+            "texto": "Justo la receta que buscaba. Gracias."
+        }
+    },
+    {
+        "pk": 5,
+        "model": "recetas.comentario",
+        "fields": {
+            "receta": 3,
+            "texto": "¡Cuidado se te queme! :-D"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "recetas.comentario",
+        "fields": {
+            "receta": 3,
+            "texto": "Tremenda receta, y muy sencilla."
+        }
+    }
+]

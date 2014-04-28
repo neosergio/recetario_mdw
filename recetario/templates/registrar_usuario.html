@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block titulo %}Nuevo Usuario{% endblock %}
+
+{% block encabezado %}
+    <h1>Registra un nuevo usuario</h1>
+{% endblock %}
+
+{% block contenido %}
+    <form method="post">{% csrf_token %}
+    	{{ form.as_table }}
+        <p><input type="submit" value="Ingresar" /></p>
+    </form>
+{% endblock %}

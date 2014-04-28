@@ -1,47 +1,41 @@
 # Django settings for recetario project.
-#encoding:utf-8
-
-# Identificando la ruta del proyecto
 import os
-RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
+PROJECT_PATH = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-#Está linea se debe dejar en False cuando se pasa a producción
-#DEBUG = False, 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-		('Sergio Infante Montero', 'raulsergio9@gmail.com'),
+    ('Victor Admin', 'victorzn23@gmail.com'),
 )
 
 MANAGERS = ADMINS
 
-#En el nombre de la base de datos debe ir la ruta absoluta completa de la base de
-#datos, en el caso de Windows debe ir entre comillas
-#'NAME': '/ruta_del_directorio_del_proyecto/recetario/recetario.db',
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'recetario.db',          # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': 'data.db',                      # Or path to database file if using sqlite3.
+        # The following settings are not used with sqlite3:
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+        'PORT': '',                      # Set to empty string for default.
     }
 }
+
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
-# On Unix systems, a value of None will cause Django to use the same
-# timezone as the operating system.
-# If running in a Windows environment this must be set to the same as your
-# system time zone.
-TIME_ZONE = 'America/Lima'
+# In a Windows environment this must be set to your system time zone.
+TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'es-PE'
+LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
@@ -57,27 +51,22 @@ USE_L10N = True
 USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = os.path.join(RUTA_PROYECTO,'carga')
+# Example: "/var/www/example.com/media/"
+MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
-# Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-# Configurar esta línea es importante puede quedar algo así:
-# MEDIA_URL = 'http://localhost:90/media/'
-MEDIA_URL = 'http://127.0.0.1:8000/media/'
+# Examples: "http://example.com/media/", "http://media.example.com/"
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/home/media/media.lawrence.com/static/"
+# Example: "/var/www/example.com/static/"
 STATIC_ROOT = ''
 
 # URL prefix for static files.
-# Example: "http://media.lawrence.com/static/"
-# Esto debe configurarse de manera similar que el media para poder servir archivos estáticos
-# Puede ser algo como esta linea comentada
-# STATIC_URL = 'http://localhost:90/static/'
+# Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
 # Additional locations of static files
@@ -85,7 +74,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(RUTA_PROYECTO,'static'),
+    os.path.join(PROJECT_PATH, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -97,7 +86,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'wu(-4)i-iq56u*73+bou^j00e!tso*w*0vv7i5%-!n=$w6!m#k'
+SECRET_KEY = '3%3x!gn7@bcfwxm%fxr^zf*ihto8+%#c$=7)1bpum_fs3rwc3s'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -122,7 +111,10 @@ ROOT_URLCONF = 'recetario.urls'
 WSGI_APPLICATION = 'recetario.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.join(RUTA_PROYECTO,'plantillas'),
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_PATH,'templates'),
 )
 
 INSTALLED_APPS = (
@@ -132,10 +124,15 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'django.contrib.admindocs',
-    'principal',
+    'braces',
+    # Uncomment the next line to enable admin documentation:
+    # 'django.contrib.admindocs',
+    'apps.recetas',
 )
+
+SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -166,9 +163,11 @@ LOGGING = {
     }
 }
 
-#Configuraciones para enviar mensajes usando gmail
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'remitente@gmail.com'
-EMAIL_HOST_PASSWORD = 'clavedelcorreo'
-EMAIL_PORT = 587
+# FIXTURE_DIRS = (
+#     os.path.join(PROJECT_PATH,'fixtures'),
+# )
+
+from django.core.urlresolvers import reverse_lazy
+LOGIN_URL = reverse_lazy('login')
+LOGIN_REDIRECT_URL = reverse_lazy('home_list')
+LOGIN_LOGOUT = reverse_lazy('logout')
