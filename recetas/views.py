@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import ContactoForm
+from .forms import ContactoForm, RecetaForm
 from .models import Comentario, Receta
 
 
@@ -38,6 +38,18 @@ def receta(request, id_receta):
     comentarios = Comentario.objects.filter(receta=dato)
     context = {'receta': dato, 'comentarios': comentarios}
     return render(request, 'recetas_receta.html', context)
+
+def receta_nueva(request):
+    if request.method=='POST':
+        formulario = RecetaForm(request.POST, request.FILES)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/recetas')
+    else:
+        formulario = RecetaForm()
+    context = {'formulario': formulario}
+    return render(request, 'recetas_recetaform.html', context)
+
 
 def recetas(request):
     recetas = Receta.objects.all()
