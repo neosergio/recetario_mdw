@@ -1,0 +1,1 @@
+En este directorio se almacenarán las imágenes de las recetas.
