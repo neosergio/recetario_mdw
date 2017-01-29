@@ -1,8 +1,32 @@
+# coding:utf-8
+
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from .forms import ContactoForm
 from .models import Comentario, Receta
 
+
+def contacto(request):
+    if request.method=='POST':
+        formulario = ContactoForm(request.POST)
+        if formulario.is_valid():
+            titulo = 'Mensaje desde el recetario de Maestros del Web'
+            contenido = formulario.cleaned_data['mensaje'] + "\n"
+            contenido += 'Comunicarse a: ' + formulario.cleaned_data['correo']
+            correo = EmailMessage(titulo, contenido, to=['destinatario@email.com'])
+            try:
+                correo.send()
+            except Exception as e:
+                print('No fue posible enviar el mensaje, revisar la configuración')
+                print(e)
+            return HttpResponseRedirect('/')
+    else:
+        formulario = ContactoForm()
+    context = {'formulario': formulario}
+    #return render_to_response('contactoform.html',{'formulario':formulario}, context_instance=RequestContext(request))
+    return render(request, 'recetas_contactoform.html',context)
 
 def inicio(request):
     recetas = Receta.objects.all()
