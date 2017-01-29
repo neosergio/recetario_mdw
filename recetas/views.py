@@ -1,12 +1,20 @@
 # coding:utf-8
 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from .forms import ComentarioForm, ContactoForm, RecetaForm
 from .models import Comentario, Receta
 
+
+@login_required(login_url='/ingresar')
+def cerrar(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 def comentario_nuevo(request):
     if request.method=='POST':
@@ -43,6 +51,34 @@ def inicio(request):
     context = {'recetas': recetas}
     return render(request, 'recetas_inicio.html', context)
 
+def ingresar(request):
+    if not request.user.is_anonymous():
+        return HttpResponseRedirect('/privado')
+    if request.method == 'POST':
+        formulario = AuthenticationForm(request.POST)
+        if formulario.is_valid:
+            usuario = request.POST['username']
+            clave = request.POST['password']
+            acceso = authenticate(username=usuario, password=clave)
+            if acceso is not None:
+                if acceso.is_active:
+                    login(request, acceso)
+                    return HttpResponseRedirect('/privado')
+                else:
+                    return render(request, 'noactivo.html')
+            else:
+                return render(request, 'nousuario.html')
+    else:
+        formulario = AuthenticationForm()
+    context = {'formulario': formulario}
+    return render(request, 'ingresar.html', context)
+
+@login_required(login_url='/ingresar')
+def privado(request):
+    usuario = request.user
+    context = {'usuario': usuario}
+    return render(request, 'privado.html', context)
+
 def receta(request, id_receta):
     dato = get_object_or_404(Receta, pk=id_receta)
     comentarios = Comentario.objects.filter(receta=dato)
@@ -71,6 +107,17 @@ def usuarios(request):
     recetas = Receta.objects.all()
     context = {'recetas': recetas, 'usuarios':usuarios}
     return render(request, 'recetas_usuarios.html', context)
+
+def usuario_nuevo(request):
+    if request.method=='POST':
+        formulario = UserCreationForm(request.POST)
+        if formulario.is_valid:
+            formulario.save()
+            return HttpResponseRedirect('/')
+    else:
+        formulario = UserCreationForm()
+    context = {'formulario': formulario}
+    return render(request, 'nuevousuario.html', context)
 
 def sobre(request):
     html = "<html><body>Proyecto de ejemplo en MDW</body></html>"
