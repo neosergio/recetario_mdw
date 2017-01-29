@@ -55,7 +55,10 @@ ROOT_URLCONF = 'recetario.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'plantillas/'),
+            os.path.join(BASE_DIR, 'recetas/plantillas/'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
