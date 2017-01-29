@@ -4,9 +4,20 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMessage
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
-from .forms import ContactoForm, RecetaForm
+from .forms import ComentarioForm, ContactoForm, RecetaForm
 from .models import Comentario, Receta
 
+
+def comentario_nuevo(request):
+    if request.method=='POST':
+        formulario = ComentarioForm(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return HttpResponseRedirect('/recetas')
+    else:
+        formulario = ComentarioForm()
+    context = {'formulario': formulario}
+    return render(request, 'recetas_comentarioform.html', context)
 
 def contacto(request):
     if request.method=='POST':
@@ -25,7 +36,6 @@ def contacto(request):
     else:
         formulario = ContactoForm()
     context = {'formulario': formulario}
-    #return render_to_response('contactoform.html',{'formulario':formulario}, context_instance=RequestContext(request))
     return render(request, 'recetas_contactoform.html',context)
 
 def inicio(request):
