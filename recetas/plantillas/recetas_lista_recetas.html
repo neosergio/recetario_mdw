@@ -13,7 +13,7 @@
 {% endblock %}
 
 {% block contenido %}
-<a href="/receta/nueva">Agregar una receta</a>
+<a href="{% url 'receta_nueva' %}">Agregar una receta</a>
 <ul>
 	{% for dato in datos %}
 	<li>
