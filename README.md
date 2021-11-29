@@ -1,5 +1,7 @@
 # Proyecto para la Guía de Django de Maestros del Web #
 
+## (Nota: Este proyecto es OBSOLETO, sirvió para publicar un curso en el 2012, pero ya no es válido. Una nueva versión podría ser creada, en el futuro.)
+
 Autor: **Sergio Infante Montero** - <raulsergio9 en gmail punto com>
 
 Version Django: **1.10.5**

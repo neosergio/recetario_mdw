@@ -1,7 +1,7 @@
 appdirs==1.4.0
-Django==1.10.5
+Django==1.10.7
 olefile==0.44
 packaging==16.8
-Pillow==4.0.0
+Pillow==6.2.2
 pyparsing==2.1.10
 six==1.10.0
